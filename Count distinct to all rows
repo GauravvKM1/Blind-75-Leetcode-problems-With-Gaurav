@@ -1,0 +1,23 @@
+ int distinct(vector<vector<int>> M, int N)
+    {
+        unordered_map<int,int>mp;
+        unordered_set<int>st;
+        int count=0;
+        for(int i=0;i<N;i++){
+            for(int j=0;j<N;j++){
+             st.insert(M[i][j]);
+            }
+            
+            for(auto it:st){
+                mp[it]++;
+            }
+            st.clear();
+        }
+        
+        for(auto it:mp){
+            if(it.second>=N){
+                count++;
+            }
+        }
+        return count;
+    }
