@@ -1,0 +1,38 @@
+class Solution {
+public:
+    int maxLevelSum(TreeNode* root) {
+       queue<TreeNode*>q;
+       q.push(root);
+       q.push(NULL);
+       int currentLevel=1;
+       int maxSum=INT_MIN;
+       int levelans=0;
+       int maxLevel=1;
+       while(!q.empty()){
+        TreeNode* temp=q.front();q.pop();
+         if(temp==NULL){
+            // ek level traverse ho chukka hai
+            // End of the current level
+            if (levelans > maxSum) {
+                maxSum = levelans;
+                maxLevel = currentLevel;
+            }
+            
+
+            if(!q.empty()){
+                q.push(NULL);
+            }
+            // Reset level sum for the next level
+            levelans = 0;
+            currentLevel++;
+         }
+         else{
+           levelans+=temp->val;
+           if(temp->left)q.push(temp->left);
+           if(temp->right)q.push(temp->right);
+
+         }
+       }
+       return maxLevel;
+    }
+};
