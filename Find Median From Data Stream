@@ -1,0 +1,40 @@
+class MedianFinder {
+public:
+   priority_queue<int>left_maxHeap;
+  // minheap aise banaya hai
+   priority_queue<int,vector<int>,greater<int>>right_Minheap; 
+    MedianFinder() {
+        
+    }
+    
+    void addNum(int num) {
+       if(left_maxHeap.empty()  || num<left_maxHeap.top() ){
+        left_maxHeap.push(num);
+       }
+       else{
+        right_Minheap.push(num);
+       }
+
+    //    balance karte hai
+    // leftMaxheap ka size bas 1 bada hona chhaiye
+    // yaa equal hona chhaiye
+    if(abs((int)left_maxHeap.size()-(int)right_Minheap.size())>1){
+         right_Minheap.push(left_maxHeap.top());
+         left_maxHeap.pop();
+    }
+    else if(left_maxHeap.size()<right_Minheap.size()){
+        left_maxHeap.push(right_Minheap.top());
+        right_Minheap.pop();
+    }
+    }
+    
+    double findMedian() {
+      if(left_maxHeap.size()==right_Minheap.size()){
+        // matlab even wala case hai
+        // return (double)
+        double ans=(double)(left_maxHeap.top()+right_Minheap.top())/2;
+        return ans;
+      }
+      return left_maxHeap.top();
+    }
+};
