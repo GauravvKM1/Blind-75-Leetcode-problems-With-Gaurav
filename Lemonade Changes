@@ -1,0 +1,34 @@
+<h3 color="pink">## Lets Do this❤️🚀</h3>
+
+bool lemonadeChange(vector<int>& bills) {
+        unordered_map<int,int>mp;
+        for(int i=0;i<bills.size();i++){
+           if(bills[i]==5){
+            mp[bills[i]]++;
+           } 
+           else if(bills[i]==10){
+            mp[bills[i]]++;
+            if(mp[5]>0){
+                mp[5]--;
+            }
+            else{
+                return false;
+            }
+           }
+           else{
+            // mp[20]++;
+            if(mp[5]>0  && mp[10]>0){
+                mp[5]--;
+                mp[10]--;
+            }
+            else if (mp[5] >= 3) {
+                mp[5] -= 3; // Give three $5 bills as change
+            } 
+            else{
+                return false;
+            }
+           }
+        }
+        return true;
+    }
+};
