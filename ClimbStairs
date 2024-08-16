@@ -1,0 +1,18 @@
+int climbStairs(int n) {
+    // Base cases
+    if (n == 0) return 1;  // There's one way to be on the ground (doing nothing).
+    if (n == 1) return 1;  // There's one way to reach the first step (1 step).
+
+    // Recursive call to calculate the number of ways to reach the nth step
+    return climbStairs(n-1) + climbStairs(n-2);
+}
+
+
+Base Case 1: If 
+n=0,it means we are already at the top without taking any steps, so there's exactly one way to do that.
+The base case n == 0 returns 1 instead of 0 because, in the context of the "Climbing Stairs" problem, returning 1 signifies that there is exactly one way to reach the top when no steps are left to climb. Here's why:
+
+Understanding the Base Case for n == 0
+Interpretation: When you are at the bottom of the stairs (before taking any steps), and you need to climb 0 more steps, you have already "completed" the climb. In other words, you've found one valid way to reach the top, which is doing nothing (because you're already there). Hence, returning 1 means there's one valid path that achieves this.
+
+Analogy to Counting Problems: Imagine if someone asked, "How many ways can you do nothing?" The answer is "one way"—you simply do nothing.
