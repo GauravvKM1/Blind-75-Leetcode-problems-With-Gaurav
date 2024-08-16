@@ -1,0 +1,22 @@
+
+
+class Solution{
+public:
+
+     void create_tree_recursive(node* &root, vector<int>& vec, int index) {
+        // Base case: if the index is out of bounds, return
+        if (index >= vec.size()) return;
+
+        // Create the current node
+        root = newNode(vec[index]);
+
+        // Recursively create the left and right children
+        create_tree_recursive(root->left, vec, 2 * index + 1);
+        create_tree_recursive(root->right, vec, 2 * index + 2);
+    }
+
+    void create_tree(node* &root0, vector<int> &vec) {
+        // Start creating the tree from the root (index 0)
+        create_tree_recursive(root0, vec, 0);
+    }
+};
