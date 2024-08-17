@@ -1,0 +1,32 @@
+
+
+
+
+
+subsetSum
+
+
+ public:
+  
+     void subsetSum(vector<int>&arr,vector<int>&ans,int i,int sum){
+         if(i==arr.size()){
+            ans.push_back(sum);
+            return;
+         }
+         
+        //  1 case
+        // include
+        sum+=arr[i];
+        subsetSum(arr,ans,i+1,sum);
+        sum-=arr[i];
+        // not include
+        subsetSum(arr,ans,i+1,sum);
+     }
+    vector<int> subsetSums(vector<int> arr, int n) {
+        // Write Your Code here
+        int sum=0;
+        int i=0;
+        vector<int>ans;
+        subsetSum(arr,ans,i,sum);
+        return ans;
+    }
