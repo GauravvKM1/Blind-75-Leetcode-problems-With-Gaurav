@@ -1,0 +1,32 @@
+class Solution {
+public:
+    TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q) {
+       if(root==NULL){
+        return NULL;
+       } 
+
+       if(root->val==p->val){
+        return p;
+       }
+       if(root->val==q->val){
+        return q;
+       }
+       
+      TreeNode* leftans= lowestCommonAncestor(root->left,p,q);
+      TreeNode* Rightans=lowestCommonAncestor(root->right,p,q);
+      TreeNode* ans;
+      if(leftans  && Rightans){
+        ans=root;
+      }
+      else if(!leftans &&  !Rightans){
+        ans= NULL;
+      }
+      else if(leftans &&  !Rightans){
+        ans=leftans;
+      }
+      else{
+        ans= Rightans;
+      }
+      return ans;
+    }
+};
