@@ -31,3 +31,48 @@ int kthAncestor(Node *root, int k, int node)
     solve(root,k,node,ans);
     return ans;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+void  solve(Node* &root,int &k,int node,vector<int> &ans,vector<int>&result){
+    if(root==NULL){
+        return ;
+    }
+    
+     
+     if(root->data==node){
+        result=ans;
+        return;
+    }
+    ans.push_back(root->data);
+    solve(root->left,k,node,ans,result);
+    solve(root->right,k,node,ans,result);
+    // backtrack
+    ans.pop_back();
+}
+
+int kthAncestor(Node *root, int k, int node)
+{
+    // Code here
+    vector<int>ans;
+    vector<int>result;
+    // int ans=-1;
+   
+    solve(root,k,node,ans,result);
+     if(result.size()<k) return -1;
+    return result[result.size()-k];
+}
