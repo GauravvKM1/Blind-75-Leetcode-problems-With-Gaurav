@@ -1,0 +1,22 @@
+
+
+void solve(TreeNode* &root,int targetSum,vector<vector<int>>&ans,vector<int>inner,int sum){
+    if(root==NULL)return;
+    sum+=root->val;
+    inner.push_back(root->val);
+
+   if(root->left == NULL && root->right == NULL && sum == targetSum) {
+        ans.push_back(inner);
+    }
+
+    solve(root->left,targetSum,ans,inner,sum);
+    solve(root->right,targetSum,ans,inner,sum);
+    inner.pop_back();
+}
+    vector<vector<int>> pathSum(TreeNode* root, int targetSum) {
+        vector<int>inner;
+        vector<vector<int>>ans;
+        int sum=0;
+        solve(root,targetSum,ans,inner,sum);
+        return ans;
+    }
