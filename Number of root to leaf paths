@@ -1,0 +1,23 @@
+void solve(Node* &root,unordered_map<int,int>&mp,int count){
+    if(root==NULL)return;
+    
+    count++;
+    if(!root->left && !root->right){
+       mp[count]++;    
+    }
+    
+    solve(root->left,mp,count);
+    solve(root->right,mp,count);
+    
+}
+void pathCounts(Node *root)
+{
+    //Your code here
+    unordered_map<int,int>mp;
+    int count=0;
+    solve(root,mp,count);
+    
+    for(auto it:mp){
+        cout<<it.first<<" "<<it.second<<" "<<"$";
+    }
+}
