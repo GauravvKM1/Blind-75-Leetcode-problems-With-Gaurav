@@ -1,0 +1,33 @@
+ int pathSum(Node* &root,int &ans){
+      if(root==NULL)return 0;
+      
+      if(!root->left && !root->right){
+        //   ans= root->data;
+          return root->data;
+      }
+       
+      int ls= pathSum(root->left,ans);
+      int rs=pathSum(root->right,ans);
+      
+      if(root->left && root->right){
+          ans=max(ans,ls+rs+root->data);
+          
+          return max(ls,rs)+root->data;
+      }
+      
+        if(!root->right && root->left) return root->data + ls;
+        if(!root->left && root->right) return root->data + rs;
+
+   }
+    int maxPathSum(Node* root)
+    {
+        // code here
+        int ans=INT_MIN;
+        pathSum(root,ans);
+        int val = pathSum(root, ans);
+        if(root->left && root->right) return ans;
+        
+        return max(ans,val);
+        return ans;
+    }
+};
