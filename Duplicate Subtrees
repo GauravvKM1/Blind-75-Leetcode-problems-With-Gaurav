@@ -1,0 +1,21 @@
+string solve(Node* &root, unordered_map<string,int>&mp,vector<Node*>&ans){
+        if(!root)return "N";
+        
+        string leftans=solve(root->left,mp,ans);
+        string rightans=solve(root->right,mp,ans);
+        
+        string S=to_string(root->data)+","+leftans+","+rightans;
+        
+        if(mp[S]==1){
+            ans.push_back(root);
+        }
+        mp[S]++;
+        return S;
+    }
+    vector<Node*> printAllDups(Node* root) {
+        // Code here
+        vector<Node*>ans;
+        unordered_map<string,int>mp;
+        solve(root,mp,ans);
+        return ans;
+    }
