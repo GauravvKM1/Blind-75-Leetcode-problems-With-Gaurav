@@ -1,0 +1,58 @@
+
+class Solution
+{
+    public:
+    void merge(int arr[], int l, int m, int r)
+    {
+         // Your code here
+        //  craete a left array
+        int n1=m-l+1;
+        int n2=r-m;
+        int* left=new int[m-l+1];
+        int * right=new int[r-m];
+        
+        // Now copy left and right in arary
+        int k=l;
+        for(int i=0;i<n1;i++){
+            left[i]=arr[k++];
+        }
+        
+        k=m+1;
+        for(int i=0;i<n2;i++){
+            right[i]=arr[k++];
+        }
+        
+        int i=0,j=0;
+        int mainArrayIndex=l;
+        while(i<n1 && j<n2){
+            if(left[i]<=right[j]){
+                arr[mainArrayIndex++]=left[i++];
+            }
+            else {
+                arr[mainArrayIndex++]=right[j++];
+            }
+        }
+        
+        while(i<n1){
+            arr[mainArrayIndex++]=left[i++];
+        }
+        
+        while(j<n2){
+            arr[mainArrayIndex++]=right[j++];
+        }
+    }
+    public:
+    void mergeSort(int arr[], int l, int r)
+    {
+        //code here
+        if(l>=r)return;
+        int mid=l+(r-l)/2;
+        mergeSort(arr,l,mid);
+        
+        mergeSort(arr,mid+1,r);
+        
+        // now Merge after returning from both part
+        merge(arr,l,mid,r);
+    }
+};
+
