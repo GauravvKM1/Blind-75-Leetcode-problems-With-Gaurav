@@ -1,0 +1,54 @@
+ void quickSort(int arr[], int low, int high)
+    {
+        // code here
+        if(low>=high)return;
+        // get partition Element
+        int p=partition(arr,low,high);
+        
+        // left part k lie
+        quickSort(arr,low,p-1);
+        
+        // right part k lie
+        quickSort(arr,p+1,high);
+    }
+    
+    public:
+    int partition (int arr[], int low, int high)
+    {
+       // Your code here
+    //   choose pivot Element
+    int pivotIndex=low;
+    int pivotElement=arr[low];
+    
+    // now count no of elements less than pivotelemnet
+    int count=0;
+    for(int i=low+1;i<=high;i++){
+        if(arr[i]<=pivotElement){
+            count++;
+        }
+    }
+    
+    // now swap pivotElement with RightElement
+    
+        int RightIndex = low + count;
+        swap(arr[low], arr[RightIndex]);  
+        pivotIndex=RightIndex;
+    // now check left is smaller than it or not
+    int i=low,j=high;
+    while(i<pivotIndex && j>pivotIndex){
+        while(arr[i]<=pivotElement){
+            i++;
+        }
+        
+        while(arr[j]>pivotElement){
+            j--;
+        }
+        
+        if(i<pivotIndex && j>pivotIndex){
+            swap(arr[i],arr[j]);
+        }
+    }
+    
+    return pivotIndex;
+    
+    }
