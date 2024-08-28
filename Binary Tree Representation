@@ -2,7 +2,7 @@
 
 class Solution{
 public:
-
+ 
      void create_tree_recursive(node* &root, vector<int>& vec, int index) {
         // Base case: if the index is out of bounds, return
         if (index >= vec.size()) return;
